@@ -60,3 +60,17 @@
 *update movie 
 ![update movie](https://github.com/user-attachments/assets/182efa69-4703-45c6-bbb4-f0f338b07c77)
 
+## Login & Logout
+
+*Login
+![Screenshot 2025-02-07 095152](https://github.com/user-attachments/assets/5f5535dd-2d36-4bf5-9b56-8a3526893982)
+
+*Logout
+![Screenshot 2025-02-07 095133](https://github.com/user-attachments/assets/b8fbe32b-606b-43e9-a8e2-5629fb0329c1)
+
+
+
+
+
+
+
