@@ -154,7 +154,7 @@ class MovieController extends Controller
         } catch (exception $e) {
             return response()->json([
                 'status'=>false,
-                'message'=>'gagal load data user. ', $e,
+                'message'=>'gagal load data movie. ', $e,
             ]);
         }
     }
@@ -226,4 +226,44 @@ class MovieController extends Controller
             ]);
         }
     }
+    function InsertMovie(Request $request){
+        $validator = Validator::make($request->all(), [
+            'title'=>'required',
+            'voteaverage'=>'required',
+            "overview"=>'required',
+            'posterpath' => 'required|max:10000|mimes:jpg,jpeg,png',
+            'category_id'=>'required',
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'status' => false,
+                'message' => $validator->errors(),
+            ]);
+        }
+        try {
+            $movie = new Movie();
+            $file = $request->posterpath;
+            if(!$request->hasFile('posterpath')){
+            } else {
+                $imageName = time().'-'.$file->getClientOriginalName();
+                $uploadDir    = public_path().'/images';
+                $file->move($uploadDir, $imageName);
+                $movie->posterpath = 'images/'.$imageName;
+            }
+            
+            $movie->title = $request->title;
+            $movie->voteaverage = $request->voteaverage;
+            $movie->overview = $request->overview;
+            $movie->category_id = $request->category_id;
+         
+            $movie->save();
+            return Response()->json([
+                'status'=>true,
+                'message'=>'Sukses input data movie',
+            ]);
+        } catch (Exception $e) {
+            return Response()->json(["status"=>false,'message'=>$e]);
+        }
+    }
+
 }
